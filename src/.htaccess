@@ -1,0 +1,3 @@
+deny from all
+
+#RewriteRule (.*) / [R=403,L]
