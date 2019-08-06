@@ -7,6 +7,10 @@ class DruidUrl
 {
     use QueryBuilderTrait;
 
+    const LOGIN = 'Login';
+    const REGISTER = 'Register';
+    const EDIT = 'Edit';
+    const COMPLETE_ACCOUNT = 'CompleteAccount';
 
     private static $ids = ['email', 'screen_name', 'national_id', 'phone_number'];
     private static $location = ['telephone'];

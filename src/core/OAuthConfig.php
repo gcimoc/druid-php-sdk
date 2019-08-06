@@ -62,22 +62,22 @@ class OAuthConfig
      */
     protected $hosts = [
         'dev' => [
-            'auth' => 'https://auth-test.pernod-ricard-espana.com',
-            'register' => 'https://register-test.pernod-ricard-espana.com',
-            'api' => 'https://api-test.pernod-ricard-espana.com',
-            'graph' => 'https://graph-test.pernod-ricard-espana.com'
+            'auth' => 'https://auth.test.id.sevillafc.es',
+            'register' => 'https://register.test.id.sevillafc.es',
+            'api' => 'https://api.test.id.sevillafc.es',
+            'graph' => 'https://graph.test.id.sevillafc.es'
         ],
         'test' => [
-            'auth' => 'https://auth-test.pernod-ricard-espana.com',
-            'register' => 'https://register-test.pernod-ricard-espana.com',
-            'api' => 'https://api-test.pernod-ricard-espana.com',
-            'graph' => 'https://graph-test.pernod-ricard-espana.com'
+            'auth' => 'https://auth.test.id.sevillafc.es',
+            'register' => 'https://register.test.id.sevillafc.es',
+            'api' => 'https://api.test.id.sevillafc.es',
+            'graph' => 'https://graph.test.id.sevillafc.es'
         ],
         'prod' => [
-            'auth' => 'https://auth.pernod-ricard-espana.com',
-            'register' => 'https://register.pernod-ricard-espana.com',
-            'api' => 'https://api.pernod-ricard-espana.com',
-            'graph' => 'https://graph.pernod-ricard-espana.com'
+            'auth' => 'https://auth.id.sevillafc.es',
+            'register' => 'https://register.id.sevillafc.es',
+            'api' => 'https://api.id.sevillafc.es',
+            'graph' => 'https://graph.id.sevillafc.es'
         ]
     ];
 

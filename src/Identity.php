@@ -10,7 +10,7 @@
 namespace Genetsis;
 
 // Require composer autoloader
-require __DIR__ . '/../vendor/autoload.php';
+//require __DIR__ . '/../vendor/autoload.php';
 
 use Cache\Adapter\Common\AbstractCachePool;
 use Exception;
@@ -24,10 +24,10 @@ use Genetsis\core\OAuthConfig;
 use Genetsis\Druid\Exceptions\InvalidGrantException;
 use GuzzleHttp\ClientInterface;
 use Psr\Log\LoggerInterface;
-
-if (session_id() === '') {
-    session_start();
-}
+//
+//if (session_id() === '') {
+//    session_start();
+//}
 
 /**
  * This is the main class of the DRUID library.
