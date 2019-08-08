@@ -483,7 +483,7 @@ class Identity
             self::$logger->info('Checking if the user has filled its data out for this section:' . $scope);
 
             if (self::isConnected()) {
-                $userCompleted = OAuth::doCheckUserCompleted(self::$druid_config->getApiUrl('api.user', 'base_url') . self::$druid_config->getApiUrl('api', 'user'), $scope);
+                $userCompleted = OAuth::doCheckUserCompleted(self::$druid_config->getApiUrl('api', 'user'), $scope);
             }
         } catch (Exception $e) {
             self::$logger->error($e->getMessage());
@@ -514,7 +514,7 @@ class Identity
             self::$logger->info('Checking if the user has accepted terms and conditions for this section:' . $scope);
 
             if (self::isConnected()) {
-                $status = OAuth::doCheckUserNeedAcceptTerms(self::$druid_config->getApiUrl('api.user', 'base_url') . self::$druid_config->getApiUrl('api.user', 'user'), $scope);
+                $status = OAuth::doCheckUserNeedAcceptTerms(self::$druid_config->getApiUrl('api', 'user'), $scope);
             }
         } catch (Exception $e) {
             self::$logger->error($e->getMessage());

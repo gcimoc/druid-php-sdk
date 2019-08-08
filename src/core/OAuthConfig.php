@@ -8,7 +8,6 @@
  * @category Bean
  * @version 1.0
  * @access private
- * @todo Review source code.
  */
 class OAuthConfig
 {
@@ -85,14 +84,14 @@ class OAuthConfig
      * @var array
      */
     protected $endpoints = [
-       'authorization_endpoint' => '/oauth2/authorize',
-       'signup_endpoint' => '/oauth2/authorize',
-       'token_endpoint' => '/oauth2/token',
-       'next_url' => '/oauth2/authorize/redirect',
-       'cancel_url' => '/oauth2/authorize/redirect',
-       'logout_endpoint' => '/oauth2/revoke',
-       'edit_account_endpoint' => '/register/edit_account_input',
-       'complete_account_endpoint' => '/register/complete_account_input',
+        'authorization_endpoint' => '/oauth2/authorize',
+        'signup_endpoint' => '/oauth2/authorize',
+        'token_endpoint' => '/oauth2/token',
+        'next_url' => '/oauth2/authorize/redirect',
+        'cancel_url' => '/oauth2/authorize/redirect',
+        'logout_endpoint' => '/oauth2/revoke',
+        'edit_account_endpoint' => '/register/edit_account_input',
+        'complete_account_endpoint' => '/register/complete_account_input',
     ];
 
 
@@ -384,5 +383,4 @@ class OAuthConfig
     {
         return $this->getEntryPoints()[0];
     }
-
 }
