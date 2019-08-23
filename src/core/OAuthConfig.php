@@ -57,26 +57,27 @@ class OAuthConfig
     protected $environment = 'dev';
 
     /**
+     *
      * @var array
      */
     protected $hosts = [
         'dev' => [
-            'auth' => 'https://auth.test.id.sevillafc.es',
-            'register' => 'https://register.test.id.sevillafc.es',
-            'api' => 'https://api.test.id.sevillafc.es',
-            'graph' => 'https://graph.test.id.sevillafc.es'
+            'auth' => '',
+            'register' => '',
+            'api' => '',
+            'graph' => ''
         ],
         'test' => [
-            'auth' => 'https://auth.test.id.sevillafc.es',
-            'register' => 'https://register.test.id.sevillafc.es',
-            'api' => 'https://api.test.id.sevillafc.es',
-            'graph' => 'https://graph.test.id.sevillafc.es'
+            'auth' => '',
+            'register' => '',
+            'api' => '',
+            'graph' => ''
         ],
         'prod' => [
-            'auth' => 'https://auth.id.sevillafc.es',
-            'register' => 'https://register.id.sevillafc.es',
-            'api' => 'https://api.id.sevillafc.es',
-            'graph' => 'https://graph.id.sevillafc.es'
+            'auth' => '',
+            'register' => '',
+            'api' => '',
+            'graph' => ''
         ]
     ];
 
