@@ -371,7 +371,7 @@ class OAuth
             Request::execute($endpoint_url, $params, Request::HTTP_POST, Request::SECURED);
 
             unset($_COOKIE[self::SSO_COOKIE_NAME]);
-            setcookie(self::SSO_COOKIE_NAME, null, -1,null,'.cocacola.es');
+            setcookie(self::SSO_COOKIE_NAME, null, -1,null);
 
             self::deleteStoredToken(iTokenTypes::ACCESS_TOKEN);
             self::deleteStoredToken(iTokenTypes::REFRESH_TOKEN);
@@ -449,18 +449,15 @@ class OAuth
             $response = self::checkCompleteData($endpoint_url, $scope);
 
             return call_user_func(function($result){
+                $completed = true;
                 if (isset($result->data) && is_array($result->data)) {
                     foreach ($result->data as $data) {
-                        if (isset($data->meta,$data->meta->data,$data->meta->data->needsToConfirmIds) && $data->meta->data->needsToConfirmIds === 'true') {
-                            return false;
-                        }else if(isset($data->meta,$data->meta->data,$data->meta->data->needsToCompleteData) && $data->meta->data->needsToCompleteData === 'true'){
-                            return false;
-                        }else{
-                            return true;
+                        if ((isset($data->meta,$data->meta->data,$data->meta->data->needsToConfirmIds) && ($data->meta->data->needsToConfirmIds === 'true')) || (isset($data->meta,$data->meta->data,$data->meta->data->needsToCompleteData) && $data->meta->data->needsToCompleteData === 'true')){
+                            $completed = false;
                         }
                     }
                 }
-                return false;
+                return $completed;
             }, $response['result']);
 
         } catch (Exception $e) {
