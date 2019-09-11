@@ -215,7 +215,7 @@ class UserApi
 
         if (is_array($identifiers)) {
             try {
-                if (!$druid_user_data = Identity::getCache()->get('user_' . reset($identifiers))) {
+                if (!$druid_user_data = Identity::getCache()->get('user_' . md5(reset($identifiers)))) {
                     Identity::getLogger()->debug('Identifier: ' . reset($identifiers) . ' is Not in Cache System');
 
                     $client_token = Identity::getThings()->getClientToken();
@@ -245,7 +245,7 @@ class UserApi
                         throw new Exception('The data retrieved is empty');
                     }
                     $druid_user = $response['result']->data;
-                    Identity::getCache()->set('user_' . reset($identifiers), $druid_user, self::USER_TTL);
+                    Identity::getCache()->set('user_' . md5(reset($identifiers)), $druid_user, self::USER_TTL);
                 } else {
                     Identity::getLogger()->debug('Identifier: ' . reset($identifiers) . ' is in Cache System');
                     $druid_user = json_decode(json_encode($druid_user_data));
