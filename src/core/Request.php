@@ -43,13 +43,16 @@ class Request
             $parameters['client_secret'] = Identity::getOAuthConfig()->getClientSecret();
         }
 
+        $cookiesJar = \GuzzleHttp\Cookie\CookieJar::fromArray($cookies, 'domain.com');
+
         $response = Identity::getHttpClient()->request(
             $http_method,
             $url,
             [
                 'headers' => $http_headers,
                 'form_params' => $parameters,
-                'http_errors' => false
+                'http_errors' => false,
+                'cookies' => $cookiesJar
             ]
         );
 
@@ -59,4 +62,4 @@ class Request
             'content_type' => $response->getHeader('Content-Type')
         );
     }
-} 
+}

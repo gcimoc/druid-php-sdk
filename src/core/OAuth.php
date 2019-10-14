@@ -289,9 +289,10 @@ class OAuth
      *
      * @param string $endpoint_url The endpoint where the request will be sent.
      * @param string $cookie_value The content of the cookie that stores the SSO.
-     * @return mixed An instance of {@link AccessToken} if its connected or
+     * @return array An instance of {@link AccessToken} if its connected or
      *     NULL if not.
-     * @throws \Exception If there is an error.
+     * @throws InvalidGrantException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public static function doExchangeSession($endpoint_url, $cookie_value)
     {
@@ -308,7 +309,7 @@ class OAuth
             $params = [
                 'grant_type' => self::GRANT_TYPE_EXCHANGE_SESSION
             ];
-            $response = Request::execute($endpoint_url, $params, Request::HTTP_POST, Request::SECURED, null, array(self::SSO_COOKIE_NAME . '=' . $cookie_value));
+            $response = Request::execute($endpoint_url, $params, Request::HTTP_POST, Request::SECURED, null, array(self::SSO_COOKIE_NAME => $cookie_value));
 
             self::checkErrors($response);
 
