@@ -43,7 +43,7 @@ class Request
             $parameters['client_secret'] = Identity::getOAuthConfig()->getClientSecret();
         }
 
-        $cookiesJar = \GuzzleHttp\Cookie\CookieJar::fromArray($cookies, 'domain.com');
+        $cookiesJar = \GuzzleHttp\Cookie\CookieJar::fromArray($cookies, Identity::getOAuthConfig()->getCookieDomain());
 
         $response = Identity::getHttpClient()->request(
             $http_method,

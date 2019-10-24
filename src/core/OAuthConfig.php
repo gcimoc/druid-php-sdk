@@ -25,7 +25,7 @@ class OAuthConfig
      * Old sections
      * @var array
      */
-    protected $entry_points = array();
+    protected $entry_points = [];
 
     /**
      * Old Redirection
@@ -39,13 +39,11 @@ class OAuthConfig
     protected $log_level = 'DEBUG';
 
     /**
-     * ../wp-druid-files/runtime/logs/
      * @var string
      */
     protected $log_path;
 
     /**
-     * ../wp-druid-files/runtime/cache/
      * @var string
      */
     protected $cache_path;
@@ -55,6 +53,13 @@ class OAuthConfig
      * @var string
      */
     protected $environment = 'dev';
+
+    /**
+     * Cookie host for SSO
+     *
+     * @var string
+     */
+    protected $cookie_domain = 'domain.com';
 
     /**
      *
@@ -360,6 +365,8 @@ class OAuthConfig
         return ($urlCallback) ?: $this->getCallback();
     }
 
+
+
 //
 //    /**
 //     * Returns a section.
@@ -383,5 +390,23 @@ class OAuthConfig
     public function getDefaultSection()
     {
         return $this->getEntryPoints()[0];
+    }
+
+    /**
+     * @return string
+     */
+    public function getCookieDomain(): string
+    {
+        return $this->cookie_domain;
+    }
+
+    /**
+     * @param string $cookie_domain
+     * @return OAuthConfig
+     */
+    public function setCookieDomain(string $cookie_domain): OAuthConfig
+    {
+        $this->cookie_domain = $cookie_domain;
+        return $this;
     }
 }

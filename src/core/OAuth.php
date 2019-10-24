@@ -202,7 +202,7 @@ class OAuth
             }
 
             // Send request.
-            $params = array();
+            $params = [];
             $params['grant_type'] = self::GRANT_TYPE_REFRESH_TOKEN;
             $params['refresh_token'] = $refresh_token->getValue();
             $response = Request::execute($endpoint_url, $params, Request::HTTP_POST, Request::SECURED);
@@ -309,7 +309,7 @@ class OAuth
             $params = [
                 'grant_type' => self::GRANT_TYPE_EXCHANGE_SESSION
             ];
-            $response = Request::execute($endpoint_url, $params, Request::HTTP_POST, Request::SECURED, null, array(self::SSO_COOKIE_NAME => $cookie_value));
+            $response = Request::execute($endpoint_url, $params, Request::HTTP_POST, Request::SECURED, [], [self::SSO_COOKIE_NAME => $cookie_value]);
 
             self::checkErrors($response);
 
@@ -540,7 +540,7 @@ class OAuth
         $expires_in = ($expires_in - ($expires_in * self::SAFETY_RANGE_EXPIRES_IN));
         $expires_at = (time() + $expires_in);
         $refresh_expires_at = ($expires_at + (60 * 60 * 24 * 12));
-        return array($expires_in, $expires_at, $refresh_expires_at);
+        return [$expires_in, $expires_at, $refresh_expires_at];
     }
 
 
