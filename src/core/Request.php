@@ -1,9 +1,13 @@
 <?php namespace Genetsis\core;
 
 use Genetsis\Identity;
+use Genetsis\Urls\QueryBuilderTrait;
+use phpDocumentor\Reflection\Types\Self_;
 
 class Request
 {
+    use QueryBuilderTrait;
+
     /** Http Methods */
     const HTTP_POST = 'POST';
     const HTTP_PUT = 'PUT';
@@ -38,22 +42,30 @@ class Request
             throw new \Exception('The PHP extension curl must be installed to use this library.');
         }
 
+        if ($http_method == self::HTTP_GET)
+            $url = self::appendQuery($url, $parameters);
+
         if ($credentials) {
             $parameters['client_id'] = Identity::getOAuthConfig()->getClientId();
             $parameters['client_secret'] = Identity::getOAuthConfig()->getClientSecret();
         }
 
-        $cookiesJar = \GuzzleHttp\Cookie\CookieJar::fromArray($cookies, Identity::getOAuthConfig()->getCookieDomain());
+        $request_params = [
+            'headers' => $http_headers,
+            'form_params' => $parameters,
+            'http_errors' => false
+        ];
+
+        if (count($cookies) > 0) {
+            $cookiesJar = \GuzzleHttp\Cookie\CookieJar::fromArray($cookies, Identity::getOAuthConfig()->getCookieDomain());
+
+            $request_params['cookies'] = $cookiesJar;
+        }
 
         $response = Identity::getHttpClient()->request(
             $http_method,
             $url,
-            [
-                'headers' => $http_headers,
-                'form_params' => $parameters,
-                'http_errors' => false,
-                'cookies' => $cookiesJar
-            ]
+            $request_params
         );
 
         return array(
