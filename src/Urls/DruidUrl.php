@@ -11,6 +11,7 @@ class DruidUrl
     const REGISTER = 'Register';
     const EDIT = 'Edit';
     const COMPLETE_ACCOUNT = 'CompleteAccount';
+    const OPTIN = 'Optin';
 
     private static $ids = ['email', 'screen_name', 'national_id', 'phone_number'];
     private static $location = ['telephone'];
@@ -48,7 +49,7 @@ class DruidUrl
     /**
      * @return string
      */
-    public function getEndpoint(): string
+    public function getEndpoint(): ?string
     {
         return $this->endpoint;
     }
@@ -66,7 +67,7 @@ class DruidUrl
     /**
      * @return string
      */
-    public function getScope(): string
+    public function getScope(): ?string
     {
         return $this->scope;
     }
@@ -75,7 +76,7 @@ class DruidUrl
      * @param string $scope
      * @return DruidUrl
      */
-    public function setScope(string $scope): DruidUrl
+    public function setScope(string $scope = ''): DruidUrl
     {
         $this->scope = $scope;
         return $this;
@@ -84,7 +85,7 @@ class DruidUrl
     /**
      * @return string
      */
-    public function getSocial(): string
+    public function getSocial(): ?string
     {
         return $this->social;
     }
@@ -102,7 +103,7 @@ class DruidUrl
     /**
      * @return string
      */
-    public function getUrlCallback(): string
+    public function getUrlCallback(): ?string
     {
         return $this->urlCallback;
     }
@@ -138,7 +139,7 @@ class DruidUrl
     /**
      * @return string
      */
-    public function getState(): string
+    public function getState(): ?string
     {
         return $this->state;
     }
