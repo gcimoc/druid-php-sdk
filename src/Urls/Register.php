@@ -41,6 +41,9 @@ class Register extends DruidUrl implements iDruidUrl
                 $params['state'] = $this->getState();
             }
 
+            if (!empty($this->getLocale())) {
+                $params['request_locale'] = $this->getLocale();
+            }
             return $this->appendQuery($this->getEndpoint(), $params);
 
         } catch (Exception $e) {

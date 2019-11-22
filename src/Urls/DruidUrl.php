@@ -36,6 +36,9 @@ class DruidUrl
     /** @var string */
     private $state = '';
 
+    /** @var string  */
+    private $locale = 'es';
+
     /**
      * Callback configured by Default
      *
@@ -154,6 +157,23 @@ class DruidUrl
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getLocale(): string
+    {
+        return $this->locale;
+    }
+
+    /**
+     * @param string $locale
+     * @return DruidUrl
+     */
+    public function setLocale(string $locale): DruidUrl
+    {
+        $this->locale = $locale;
+        return $this;
+    }
 
     protected function arrayToUserJson(array $userInfo) {
         $user = array("objectType" => "user");
