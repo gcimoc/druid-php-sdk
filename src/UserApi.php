@@ -3,6 +3,7 @@
 use Exception;
 use Genetsis\core\LoginStatusType;
 use Genetsis\core\Request;
+use Genetsis\Urls\DruidUrl;
 
 /**
  * This class allow you to use the User Api
@@ -197,6 +198,33 @@ class UserApi
             Identity::getLogger()->error($e->getMessage());
         }
         return null;
+    }
+
+    /**
+     * @param $entrypoint
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public static function acceptUserOptin($entrypoint) {
+        try {
+
+            if (empty($entrypoint)) {
+                throw new Exception("Entrypoint empty");
+            }
+
+            $params = array(
+                'code' => self::getUserLoggedOid(),
+                'e' => $entrypoint,
+                'accept' => 'true'
+            );
+
+            $response = \Genetsis\core\Request::execute(URLBuilder::create(DruidUrl::OPTIN)->getEndpoint(), $params);
+
+            if ($response['code'] === 200) {
+                self::deleteCacheUser();
+            }
+        } catch ( Exception $e ) {
+            Identity::getLogger()->error($e->getMessage());
+        }
     }
 
     /**

@@ -12,6 +12,7 @@ class DruidUrl
     const EDIT = 'Edit';
     const COMPLETE_ACCOUNT = 'CompleteAccount';
     const OPTIN = 'Optin';
+    const SSO = 'Sso';
 
     private static $ids = ['email', 'screen_name', 'national_id', 'phone_number'];
     private static $location = ['telephone'];
@@ -37,7 +38,7 @@ class DruidUrl
     private $state = '';
 
     /** @var string  */
-    private $locale = 'es';
+    private $locale = '';
 
     /**
      * Callback configured by Default
