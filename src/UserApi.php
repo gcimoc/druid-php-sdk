@@ -82,17 +82,26 @@ class UserApi
         return null;
     }
 
-    public static function getUserLoggedConsumerOptin()
+    /**
+     * Return if user logged has consumer optin
+     *
+     * @return bool
+     */
+    public static function getUserLoggedConsumerOptin() : bool
     {
-        $optin = null;
+        $optin = 'false';
 
-        if (isset(self::getUserLogged()->user->user_assertions->optin->consumer)) {
-            $optin = self::getUserLogged()->user->user_assertions->optin->consumer->value;
-        } else if (isset(self::getUserLogged()->user->user_assertions->optin->user)) {
-            $optin = self::getUserLogged()->user->user_assertions->optin->user->value;
+        $user_assertions = self::getUserLogged()->user->user_assertions->optin ?? null;
+
+        if ($user_assertions) {
+            if ($user_assertions->consumer ?? false) {
+                $optin = $user_assertions->consumer->value;
+            } else if ($user_assertions->user ?? false) {
+                $optin = $user_assertions->user->value;
+            }
         }
 
-        return $optin;
+        return $optin === 'true';
     }
 
     /**
@@ -189,10 +198,10 @@ class UserApi
 
             if ($ckusid == null) {
                 if ((Identity::getThings()->getLoginStatus()!=null)&&(Identity::getThings()->getLoginStatus()->getConnectState() == LoginStatusType::connected)) {
-                    Identity::getCache()->delete('user_' . Identity::getThings()->getLoginStatus()->getCkUsid());
+                    Identity::getCache()->delete('user_' . md5(Identity::getThings()->getLoginStatus()->getCkUsid()));
                 }
             } else {
-                Identity::getCache()->delete('user_' . $ckusid);
+                Identity::getCache()->delete('user_' . md5($ckusid));
             }
         } catch ( Exception $e ) {
             Identity::getLogger()->error($e->getMessage());

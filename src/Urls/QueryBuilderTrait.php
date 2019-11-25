@@ -12,7 +12,7 @@ trait QueryBuilderTrait
      *
      * @return string
      */
-    protected function buildQueryString(array $params) : string
+    protected static function buildQueryString(array $params) : string
     {
         return http_build_query($params, null, '&', \PHP_QUERY_RFC3986);
     }
@@ -24,9 +24,9 @@ trait QueryBuilderTrait
      * @param  string $query The HTTP query string
      * @return string The resulting URL
      */
-    protected function appendQuery(string $url, array $query) : string
+    protected static function appendQuery(string $url, array $query) : string
     {
-        $query = trim($this->buildQueryString($query), '?&');
+        $query = trim(self::buildQueryString($query), '?&');
         if ($query) {
             $glue = strstr($url, '?') === false ? '?' : '&';
             return $url . $glue . $query;
