@@ -20,7 +20,8 @@
         "monolog/monolog": "^1.23",
         "guzzlehttp/guzzle": "^6.3",
         "cache/filesystem-adapter": "^1.0",
-        "cache/apcu-adapter": "1.0.0"
+        "cache/apcu-adapter": "1.0.0",
+        "cache/void-adapter": "^1.0"
     },
     "require-dev": {
         "cache/void-adapter": "^1.0"
