@@ -24,10 +24,10 @@ use Genetsis\core\OAuthConfig;
 use Genetsis\Druid\Exceptions\InvalidGrantException;
 use GuzzleHttp\ClientInterface;
 use Psr\Log\LoggerInterface;
-//
-//if (session_id() === '') {
-//    session_start();
-//}
+
+if ((session_id() === '')||(!isset($_SESSION))) {
+    session_start();
+}
 
 /**
  * This is the main class of the DRUID library.
