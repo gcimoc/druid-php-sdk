@@ -152,7 +152,7 @@ class DruidUrl
      * @param string $state
      * @return DruidUrl
      */
-    public function setState(string $state): DruidUrl
+    public function setState($state): DruidUrl
     {
         $this->state = $state;
         return $this;
