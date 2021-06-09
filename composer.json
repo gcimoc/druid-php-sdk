@@ -17,7 +17,7 @@
         "lib-curl": "*",
         "ext-dom": "*",
         "psr/http-factory": "^1.0",
-        "monolog/monolog": "^1.23",
+        "monolog/monolog": "^2.2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "cache/filesystem-adapter": "^1.0",
         "cache/apcu-adapter": "1.0.0",
