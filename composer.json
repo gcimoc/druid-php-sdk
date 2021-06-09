@@ -1,5 +1,5 @@
 {
-    "name": "israeldominguez/druid-php-sdk",
+    "name": "gcimoc/druid-php-sdk",
     "description": "Druid Rest Api",
     "type": "library",
     "license": "MIT",
